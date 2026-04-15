@@ -3,10 +3,15 @@ package com.example;
 import java.util.List;
 
 public class Lion {
-
-    boolean hasMane;
+    private boolean hasMane;
+    private Feline feline;
 
     public Lion(String sex) throws Exception {
+        this(sex, new Feline());
+    }
+
+    public Lion(String sex, Feline feline) throws Exception {
+        this.feline = feline;
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
@@ -15,8 +20,6 @@ public class Lion {
             throw new Exception("Используйте допустимые значения пола животного - самей или самка");
         }
     }
-
-    Feline feline = new Feline();
 
     public int getKittens() {
         return feline.getKittens();
