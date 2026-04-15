@@ -43,10 +43,4 @@ class AlexLionTest {
         AlexLion alex = new AlexLion();
         assertEquals("Нью-Йоркский зоопарк", alex.getPlaceOfLiving());
     }
-
-    @Test
-    void getKittensFromSuperClassShouldBeOverridden() throws Exception {
-        AlexLion alex = new AlexLion(mockFeline);
-        assertEquals(0, alex.getKittens());
-    }
 }

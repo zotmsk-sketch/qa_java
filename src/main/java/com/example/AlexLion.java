@@ -4,10 +4,12 @@ import java.util.List;
 
 public class AlexLion extends Lion {
 
+    // Конструктор без параметров — передаёт "Самец" и новый Feline
     public AlexLion() throws Exception {
-        super("Самец");
+        super("Самец", new Feline());
     }
 
+    // Конструктор с возможностью передать мок Feline (для тестов)
     public AlexLion(Feline feline) throws Exception {
         super("Самец", feline);
     }

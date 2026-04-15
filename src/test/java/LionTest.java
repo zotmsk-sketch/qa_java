@@ -15,10 +15,16 @@ class LionTest {
     private Feline mockFeline;
 
     @Test
-    void getKittensShouldReturnFelineKittens() throws Exception {
+    void getKittensShouldReturnValueFromFeline() throws Exception {
         when(mockFeline.getKittens()).thenReturn(3);
         Lion lion = new Lion("Самец", mockFeline);
         assertEquals(3, lion.getKittens());
+    }
+
+    @Test
+    void getKittensShouldCallFelineGetKittens() throws Exception {
+        Lion lion = new Lion("Самец", mockFeline);
+        lion.getKittens();
         verify(mockFeline).getKittens();
     }
 
@@ -35,11 +41,17 @@ class LionTest {
     }
 
     @Test
-    void getFoodShouldCallFelineGetFoodWithPredator() throws Exception {
+    void getFoodShouldReturnValueFromFeline() throws Exception {
         List<String> expected = List.of("Животные", "Птицы", "Рыба");
         when(mockFeline.getFood("Хищник")).thenReturn(expected);
         Lion lion = new Lion("Самец", mockFeline);
         assertEquals(expected, lion.getFood());
+    }
+
+    @Test
+    void getFoodShouldCallFelineGetFoodWithPredator() throws Exception {
+        Lion lion = new Lion("Самец", mockFeline);
+        lion.getFood();
         verify(mockFeline).getFood("Хищник");
     }
 
@@ -51,9 +63,7 @@ class LionTest {
     }
 
     @Test
-    void constructorWithOnlySexShouldCreateFelineAndSetMane() throws Exception {
-        Lion lion = new Lion("Самец");
-        assertTrue(lion.doesHaveMane());
-        assertNotNull(lion.getKittens());
+    void constructorShouldThrowExceptionForInvalidSex() {
+        assertThrows(Exception.class, () -> new Lion("Неизвестно", mockFeline));
     }
 }

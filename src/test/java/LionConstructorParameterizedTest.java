@@ -10,13 +10,13 @@ class LionConstructorParameterizedTest {
     @ParameterizedTest
     @CsvSource({"Самец, true", "Самка, false"})
     void lionConstructorShouldSetManeCorrectly(String sex, boolean expectedMane) throws Exception {
-        Lion lion = new Lion(sex);
+        Lion lion = new Lion(sex, new Feline());
         assertEquals(expectedMane, lion.doesHaveMane());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"Неизвестно", "Самец1", ""})
     void lionConstructorShouldThrowExceptionForInvalidSex(String invalidSex) {
-        assertThrows(Exception.class, () -> new Lion(invalidSex));
+        assertThrows(Exception.class, () -> new Lion(invalidSex, new Feline()));
     }
 }
